@@ -19,7 +19,7 @@
         var response;
         $.ajax({
             type: 'GET',
-            url: 'http://httpbin.org/get',
+            url: location.protocol+'//httpbin.org/get',
             success: function(data){
                     console.log(data);
                     response = data;
