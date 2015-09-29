@@ -32,8 +32,7 @@
             <div class="card-panel">
                 <h5>IP Address</h5>
                 <small class="grey-text">Address</small>
-                <p id="ip"></p>
-                </dl>
+                <div id="ip"></div>
             </div>
         </div>
     </div>
@@ -46,6 +45,7 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
      <script>
+        // httpbin.org
         var response;
         $.ajax({
             type: 'GET',
@@ -53,7 +53,7 @@
             success: function(data){
                     response = data;
                     // IP
-                    $('#ip').html(response.origin);
+                    $('#ip').html("<small class=\"grey-text\">Address</small><p>"+response.origin+"</p>");
 
                     // Headers
                     for (var key in response.headers) {
@@ -63,8 +63,24 @@
                     $('#loader').hide();
                 },
             error: function(xhr, type){
-                Materialize.toast('Unable to request information from httpbin.org, reload to retry', 5000)
+                Materialize.toast('Unable to request information from httpbin.org, reload to retry.', 5000)
             }
+        // ipinfo.io
+        var response_ipinfo;
+        $.ajax({
+            type: 'GET',
+            url: location.protocol+'//ipinfo.io/json',
+            success: function(data){
+                    response_ipinfo = data;
+                    for (var key in response_ipinfo) {
+                        $('#ip').append("<small class=\"grey-text\">"+key+"</small><p>"+response_ipinfo[key]+"</p>");
+                    }
+                },
+            error: function(xhr, type){
+                Materialize.toast('Unable to request information from ipinfo.io, reload to retry.', 5000)
+            }
+        });
+
         });
     </script>
 </body>
