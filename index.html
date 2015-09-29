@@ -65,6 +65,7 @@
             error: function(xhr, type){
                 Materialize.toast('Unable to request information from httpbin.org, reload to retry.', 5000)
             }
+        });
         // ipinfo.io
         var response_ipinfo;
         $.ajax({
@@ -79,8 +80,6 @@
             error: function(xhr, type){
                 Materialize.toast('Unable to request information from ipinfo.io, reload to retry.', 5000)
             }
-        });
-
         });
     </script>
 </body>
