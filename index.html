@@ -73,7 +73,9 @@
             success: function(data){
                     response_ipinfo = data;
                     for (var key in response_ipinfo) {
-                        $('#ip').append("<small class=\"grey-text\">"+key+"</small><p>"+response_ipinfo[key]+"</p>");
+                        if(key != 'ip') {
+                            $('#ip').append("<small class=\"grey-text\" style=\"text-transform: capitalize;\">"+key+"</small><p>"+response_ipinfo[key]+"</p>");
+                        }
                     }
                 },
             error: function(xhr, type){
